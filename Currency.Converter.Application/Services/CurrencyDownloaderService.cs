@@ -1,10 +1,7 @@
 ﻿using Currency.Converter.Model.Abstractions;
 using System;
-using System.Collections.Generic;
 using System.Net;
-using System.Text;
 using System.Threading.Tasks;
-using System.Xml.Linq;
 
 namespace Currency.Converter.Application.Services
 {
@@ -16,9 +13,9 @@ namespace Currency.Converter.Application.Services
         }
 
 
-        public async Task DownloadCurrenciesLatestValues()
+        public async Task<string> DownloadCurrenciesLatestValues()
         {
-            await GetCurrencies(null);
+            return await GetCurrencies(null);
         }
 
         public Task DownloadCurrenciesAtDate(DateTime date)
@@ -26,16 +23,17 @@ namespace Currency.Converter.Application.Services
             throw new NotImplementedException();
         }
         
-        private async Task GetCurrencies(DateTime? date)
+        private async Task<string> GetCurrencies(DateTime? date)
         {
-            Uri downloadLink = 
+            Uri downloadLink = new Uri("https://www.bnr.ro/nbrfxrates.xml");//TODO use this from IConfig and save it in appsettings
             string xmlValues;
             using (var webClient = new WebClient())
             {
-                xmlValues = await webClient.DownloadStringAsync("https://www.bnr.ro/nbrfxrates.xml");
+                xmlValues = await webClient.DownloadStringTaskAsync(downloadLink);
             }
 
-            XDocument doc = XDocument.Parse(xmlValues);
+            return xmlValues;
+            //XDocument doc = XDocument.Parse(xmlValues);
         }
     }
 }

@@ -1,6 +1,6 @@
+using Currency.Converter.Application;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -26,11 +26,19 @@ namespace Currency.Converter
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+            services.AddSwaggerGen();
+            services.AddApplicationServices(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -57,6 +65,8 @@ namespace Currency.Converter
                     name: "default",
                     pattern: "{controller}/{action=Index}/{id?}");
             });
+
+
 
             app.UseSpa(spa =>
             {
