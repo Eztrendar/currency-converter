@@ -16,8 +16,8 @@ namespace Currency.Converter.Controllers
             currencyService = _currencyService;
         }
 
-        [HttpGet("GetLastCurrencies")]
-        public async Task<IEnumerable<CurrencyModel>> GetLastCurrencies()
+        [HttpGet("latest")]
+        public async Task<IEnumerable<CurrencyModel>> GetLastestCurrencies()
         {
             return await currencyService.GetLatestCurrencies();
         }

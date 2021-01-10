@@ -42,7 +42,7 @@ namespace Currency.Converter.BNR
                                 Elements().Select((element, index) => 
                                     new CurrencyModel
                                     {  
-                                        Type = element.Name.LocalName, 
+                                        Type = element.Attribute("currency").Value, 
                                         Value = decimal.TryParse(element.Value, out decimal result) ? result : 0 
                                     });
             

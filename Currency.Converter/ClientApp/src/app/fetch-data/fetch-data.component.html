@@ -1,24 +1,38 @@
-<h1 id="tableLabel">Weather forecast</h1>
+<h1 id="tableLabel">Currency list</h1>
 
-<p>This component demonstrates fetching data from the server.</p>
+<div class="input-group">
+  <input type="text" class="form-control" aria-label="Base currency input">
+  <div class="input-group-append">
+    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Choose</button>
+    <div class="dropdown-menu">
+      <p class="dropdown-item" *ngFor="let currency of currencies">{{ currency.type }}</p>
+    </div>
+  </div>
+</div>
 
-<p *ngIf="!forecasts"><em>Loading...</em></p>
+<div class="input-group">
+  <input type="text" class="form-control" aria-label="Text input with dropdown button">
+  <div class="input-group-append">
+    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</button>
+    <div class="dropdown-menu">
+      <p class="dropdown-item" *ngFor="let currency of currencies">{{ currency.type }}</p>
+    </div>
+  </div>
+</div>
 
-<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="forecasts">
+<p *ngIf="!currencies"><em>Loading...</em></p>
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="currencies">
   <thead>
     <tr>
-      <th>Date</th>
-      <th>Temp. (C)</th>
-      <th>Temp. (F)</th>
-      <th>Summary</th>
+      <th>Type</th>
+      <th>Value</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let forecast of forecasts">
-      <td>{{ forecast.date }}</td>
-      <td>{{ forecast.temperatureC }}</td>
-      <td>{{ forecast.temperatureF }}</td>
-      <td>{{ forecast.summary }}</td>
+    <tr *ngFor="let currency of currencies">
+      <td>{{ currency.type }}</td>
+      <td>{{ currency.value}}</td>
     </tr>
   </tbody>
 </table>

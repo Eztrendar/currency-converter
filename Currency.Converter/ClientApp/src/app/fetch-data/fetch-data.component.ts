@@ -7,10 +7,14 @@ import { HttpClient } from '@angular/common/http';
 })
 export class FetchDataComponent {
   public forecasts: WeatherForecast[];
+  public currencies: Currency[];
 
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-    http.get<WeatherForecast[]>(baseUrl + 'weatherforecast').subscribe(result => {
-      this.forecasts = result;
+    //http.get<WeatherForecast[]>(baseUrl + 'weatherforecast').subscribe(result => {
+    //  this.forecasts = result;
+    //}, error => console.error(error));
+    http.get<Currency[]>(baseUrl + 'currency/latest').subscribe(result => {
+      this.currencies = result;
     }, error => console.error(error));
   }
 }
@@ -20,4 +24,8 @@ interface WeatherForecast {
   temperatureC: number;
   temperatureF: number;
   summary: string;
+}
+interface Currency {
+  type: string;
+  value: number;
 }
