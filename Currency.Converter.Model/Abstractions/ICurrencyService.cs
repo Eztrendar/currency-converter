@@ -1,9 +1,11 @@
-﻿using System.Threading.Tasks;
+﻿using Currency.Converter.Model.Entities;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Currency.Converter.Model.Abstractions
 {
     public interface ICurrencyService
     {
-        Task<string> GetLatestCurrencies();
+        Task<IEnumerable<CurrencyModel>> GetLatestCurrencies();
     }
 }

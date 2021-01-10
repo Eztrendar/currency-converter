@@ -1,5 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Currency.Converter.Model.Abstractions;
+using Currency.Converter.Model.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Currency.Converter.Controllers
@@ -15,7 +17,7 @@ namespace Currency.Converter.Controllers
         }
 
         [HttpGet("GetLastCurrencies")]
-        public async Task<string> GetLastCurrencies()
+        public async Task<IEnumerable<CurrencyModel>> GetLastCurrencies()
         {
             return await currencyService.GetLatestCurrencies();
         }

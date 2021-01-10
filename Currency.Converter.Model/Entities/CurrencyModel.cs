@@ -2,19 +2,19 @@
 
 namespace Currency.Converter.Model.Entities
 {
-    public class Currency
+    public class CurrencyModel
     {
         public int? CurrencyId { get; set; }
         public string Type { get; set; }
         public decimal Value { get; set; }
         public DateTime? Date { get; set; }
 
-        public Currency()
+        public CurrencyModel()
         {
 
         }
 
-        public Currency(int? currencyId, string type, decimal value, DateTime? date)
+        public CurrencyModel(int? currencyId, string type, decimal value, DateTime? date)
         {
             CurrencyId = currencyId;
             Type = type;

@@ -5,11 +5,10 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Currency.Converter.Application
 {
-    public static class ApplicationDependencyInjectionExtension
+    public static class ApplicationDependencyInjection
     {
         public static void AddApplicationServices(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddScoped<ICurrencyDownloaderService, CurrencyDownloaderService>();
             services.AddScoped<ICurrencyService, CurrencyService>();
         }
     }

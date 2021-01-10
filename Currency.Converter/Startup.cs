@@ -1,4 +1,5 @@
 using Currency.Converter.Application;
+using Currency.Converter.BNR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
@@ -28,6 +29,7 @@ namespace Currency.Converter
             });
             services.AddSwaggerGen();
             services.AddApplicationServices(Configuration);
+            services.AddDownloaderServices(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
